@@ -1,0 +1,82 @@
+public class Forma {
+   private String nombre;
+   public Forma(String nombre){
+
+       this.nombre=nombre;
+   }
+   public double area(){
+       return 0;
+}
+   public String toString(){
+        return "Nombre de la forma: " + nombre;
+    }
+}
+class Esfera extends Forma{
+
+    private double radio;
+
+    public Esfera( double radio) {
+        super("Esfera");
+        this.radio=radio;
+    }
+
+    @Override
+    public double area() {
+        return 4*Math.PI*Math.pow(radio,2);
+    }
+}
+class Rectangulo extends Forma{
+    private double longitud;
+    private double ancho;
+
+    public Rectangulo(double longitud,double ancho){
+        super("Rectangulo");
+        this.ancho=ancho;
+        this.longitud=longitud;
+    }
+    public double area(){
+        return ancho*longitud;
+    }
+}
+class Cilindro extends Forma{
+
+    private double altura;
+    private double radio;
+
+    public Cilindro(double altura, double radio){
+        super("Cilindro");
+        this.radio=radio;
+        this.altura=altura;
+    }
+    public double area(){
+        return Math.PI*Math.pow(radio,2)*altura;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+}
+class Pintura{
+    private double cobertura;
+
+    public Pintura(double cobertura){
+        this.cobertura=cobertura;
+    }
+
+    public double CantidadPintura(Forma forma){
+        return  forma.area() / cobertura;
+    }
+}
+class MainPinntura{
+    public static void main(String[] args) {
+        Pintura pintura = new Pintura(250);
+        Forma rectangulo = new Rectangulo(20,35);
+        Forma esfera = new Esfera(15);
+        Forma cilindro = new Cilindro(10,30);
+
+        System.out.println("Cantidad de pintura para el rectángulo: "+pintura.CantidadPintura(rectangulo));
+        System.out.println("Cantidad de pintura para la esfera: "+pintura.CantidadPintura(esfera));
+        System.out.println("Cantidad de pintura para el cilindro: "+pintura.CantidadPintura(cilindro));
+    }
+}
